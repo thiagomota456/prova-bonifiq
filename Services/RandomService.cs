@@ -1,16 +1,14 @@
-﻿namespace ProvaPub.Services
+﻿using System.Security.Cryptography;
+
+namespace ProvaPub.Services
 {
 	public class RandomService
 	{
-		int seed;
-		public RandomService()
-		{
-			seed = Guid.NewGuid().GetHashCode();
-		}
 		public int GetRandom()
 		{
-			return new Random(seed).Next(100);
-		}
+            //returns a random integer between 0 (inclusive) and 1001 (exclusive)
+            return RandomNumberGenerator.GetInt32(1001);
+        }
 
 	}
 }
