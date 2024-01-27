@@ -12,10 +12,19 @@ namespace ProvaPub.Services
 			_ctx = ctx;
 		}
 
-		public ProductList  ListProducts(int page)
-		{
-			return new ProductList() {  HasNext=false, TotalCount =10, Elementos = _ctx.Products.ToList() };
-		}
+        public ProductList ListProducts(int page, int pageSize)
+        {
+            var totalCount = _ctx.Products.Count();
+            var skipAmount = pageSize * (page - 1);
+            var products = _ctx.Products.Skip(skipAmount).Take(pageSize).ToList();
 
-	}
+            return new ProductList()
+            {
+                HasNext = (skipAmount + pageSize) < totalCount,
+                TotalCount = totalCount,
+                Elementos = products
+            };
+        }
+
+    }
 }

@@ -28,8 +28,9 @@ namespace ProvaPub.Controllers
 		public ProductList ListProducts(int page)
 		{
 			var productService = new ProductService(_ctx);
-			return productService.ListProducts(page);
-		}
+            int pageSize = 10;
+            return productService.ListProducts(page, pageSize);
+        }
 
 		[HttpGet("customers")]
 		public CustomerList ListCustomers(int page)
