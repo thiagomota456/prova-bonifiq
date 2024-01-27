@@ -11,8 +11,7 @@ namespace ProvaPub.Controllers
 	[Route("[controller]")]
 	public class Parte2Controller :  ControllerBase2
 	{
-       
-        public Parte2Controller(ProductService productService, CustomerService customerService) : base(productService, customerService)
+        public Parte2Controller(ProductService productService, CustomerService customerService, RandomService randomService, OrderService orderService) : base(productService, customerService, randomService, orderService)
         {
         }
 

@@ -16,8 +16,10 @@ builder.Services.AddSingleton<RandomService>();
 builder.Services.AddDbContext<TestDbContext>(options =>
 	options.UseSqlServer(builder.Configuration.GetConnectionString("ctx")));
 
-builder.Services.AddScoped<ProductService>();
 builder.Services.AddScoped<CustomerService>();
+builder.Services.AddScoped<OrderService>();
+builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<RandomService>();
 
 var app = builder.Build();
 

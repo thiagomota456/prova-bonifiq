@@ -1,23 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ProvaPub.Controllers.Base;
 using ProvaPub.Services;
 
 namespace ProvaPub.Controllers
 {
-	/// <summary>
-	/// Ao rodar o código abaixo o serviço deveria sempre retornar um número diferente, mas ele fica retornando sempre o mesmo número.
-	/// Faça as alterações para que o retorno seja sempre diferente
-	/// </summary>
 	[ApiController]
 	[Route("[controller]")]
-	public class Parte1Controller :  ControllerBase
+	public class Parte1Controller :  ControllerBase2
 	{
-		private readonly RandomService _randomService;
+        public Parte1Controller(ProductService productService, CustomerService customerService, RandomService randomService, OrderService orderService) : base(productService, customerService, randomService, orderService)
+        {
+        }
 
-		public Parte1Controller(RandomService randomService)
-		{
-			_randomService = randomService;
-		}
-		[HttpGet]
+        [HttpGet]
 		public int Index()
 		{
 			return _randomService.GetRandom();
