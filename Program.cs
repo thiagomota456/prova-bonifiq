@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ProvaPub.Repository;
 using ProvaPub.Services;
+using ProvaPub.Strategies;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +21,18 @@ builder.Services.AddDbContext<TestDbContext>(options =>
 builder.Services.AddScoped<CustomerService>();
 builder.Services.AddScoped<OrderService>();
 builder.Services.AddScoped<ProductService>();
-builder.Services.AddScoped<RandomService>();
+builder.Services.AddScoped<PaymentStrategyFactory>();
+
+builder.Services.AddScoped<IPaymentStrategy>(provider =>
+{
+    var factory = provider.GetRequiredService<PaymentStrategyFactory>();
+    return (IPaymentStrategy)factory; // PaymentStrategyFactory implementa IPaymentStrategy
+});
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+});
 
 var app = builder.Build();
 

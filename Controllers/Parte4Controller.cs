@@ -3,6 +3,7 @@ using ProvaPub.Controllers.Base;
 using ProvaPub.Models;
 using ProvaPub.Repository;
 using ProvaPub.Services;
+using ProvaPub.Strategies;
 
 namespace ProvaPub.Controllers
 {
@@ -19,7 +20,7 @@ namespace ProvaPub.Controllers
 	[Route("[controller]")]
 	public class Parte4Controller :  ControllerBase2
 	{
-        public Parte4Controller(ProductService productService, CustomerService customerService, RandomService randomService, OrderService orderService) : base(productService, customerService, randomService, orderService)
+        public Parte4Controller(ProductService productService, CustomerService customerService, RandomService randomService, OrderService orderService, PaymentStrategyFactory paymentStrategyFactory) : base(productService, customerService, randomService, orderService, paymentStrategyFactory)
         {
         }
 
