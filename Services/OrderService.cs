@@ -25,7 +25,7 @@ namespace ProvaPub.Services
             {
                 Value = paymentValue,
                 CustomerId = customerId,
-                OrderDate = new DateTime(),
+                OrderDate = DateTime.Now,
                 Customer = customer
             };
 
